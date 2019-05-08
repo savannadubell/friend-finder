@@ -1,4 +1,4 @@
-var friendsArray = [
+var friends = [
 	{
 		name: 'Rachel Green',
 		photo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRktDEZY_o8Bv2qb76xxazqjq3iPpXKXza4_Hkf1lzpsD51NrU6',
@@ -160,3 +160,5 @@ var friendsArray = [
 		]
 	}
 ];
+
+module.exports = friends;

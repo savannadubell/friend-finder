@@ -202,7 +202,6 @@
 				</div>
 			</div>
 		</div>
-	</main>
 
 	<footer class="page-footer blue darken-3">
 		<div class="container">
@@ -237,7 +236,7 @@
 			<img id="userMatchImage" class="materialboxed" width="650" src="">
 		</div>
 		<div class="modal-footer">
-			<a href="/survey" class="modal-action modal-close waves-effect waves-green btn-flat">Fill Again!</a>
+			<a href="..public//survey" class="modal-action modal-close waves-effect waves-green btn-flat">Fill Again!</a>
 		</div>
 	</div>
 
@@ -256,35 +255,46 @@
 		// Activate submit button
 		$('#submitButton').on('click', function(event) {
 			event.preventDefault();
-			// Gather user inputs
-			var userInput = {
-				name: $('#userName').val().trim(),
-				photo: $('#userPhoto').val().trim(),
-				scores:[
-					$('#question1').val().trim(),
-					$('#question2').val().trim(),
-					$('#question3').val().trim(),
-					$('#question4').val().trim(),
-					$('#question5').val().trim(),
-					$('#question6').val().trim(),
-					$('#question7').val().trim(),
-					$('#question8').val().trim(),
-					$('#question9').val().trim(),
-					$('#question10').val().trim()
-				]
-			};
+			// Form validation
+  			var valid = true;
+  			if($("#userName").val() === "" || $("#userPhoto").val() === "") {
+	  		valid = false;
+  			} else if($("#question1").val() === "empty" || $("#question2").val() === "empty" || $("#question3").val() === "empty" || $("#question4").val() === "empty" || $("#question5").val() === "empty" || $("#question6").val() === "empty" || $("#question7").val() === "empty" || $("#question8").val() === "empty" || $("#question9").val() === "empty" || $("#question10").val() === "empty") {
+	  		valid = false;
+  			}
+  			if(valid === true) {
+	 		 var newUser = {
+		  		name: $("#userName").val().trim(),
+		  		photo: $("#userPhoto").val().trim(),
+		  		scores: [
+			  	$("#question1").val(),
+			  	$("#question2").val(),
+			  	$("#question3").val(),
+			  	$("#question4").val(),
+			  	$("#question5").val(),
+			  	$("#question6").val(),
+			  	$("#question7").val(),
+			  	$("#question8").val(),
+			  	$("#question9").val(),
+			  	$("#question10").val()
+		  	]
+	  	};
+	  	var currentURL = window.location.origin;
 			// console.log('userInput = ' + JSON.stringify(userInput));
 			// Add user inputs to friends list
-			$.post('/api/friends', userInput)
-      		.done(function(data) {
+			$.post(currentURL + "/api/friends", newUser, function(data) {
       			// console.log('response = ' + JSON.stringify(data));
       			// Set the name and image values of friend match
       			$('#userMatch').html(data.matchName);
 		    	$("#userMatchImage").attr("src", data.matchImage);
 		    	// Pop open the modal dialog
-      			$('#modal1').modal('open');
-      		});
-		});
+      			$('#modal1').modal('toggle');
+			  });
+			} else {
+	  		// If a required field is missing, show alert
+	  		alert("Survey is incomplete!");
+  			}
+			});
 	</script>
 </body>
 </html>
