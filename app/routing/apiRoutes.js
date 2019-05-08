@@ -19,7 +19,9 @@ module.exports = function(app) {
 		var userInput = req.body;
 		// console.log('userInput = ' + JSON.stringify(userInput));
 
-		var userResponses = userInput.scores;
+		for(var i = 0; i < user.scores.length; i++) {
+			user.scores[i] = parseInt(user.scores[i]);
+		  }
 		// console.log('userResponses = ' + userResponses);
 
 		// Compute best friend match
@@ -49,11 +51,13 @@ module.exports = function(app) {
 					bestFriendIndex = i;
 					minimumDifference = totalDifference;
 			}
+		}
 		
 		// Add new user
 		friends.push(userInput);
 
 		// Send appropriate response
 		res.json(friends[bestFriendIndex]);
-	};
-});
+	
+	});
+  };
