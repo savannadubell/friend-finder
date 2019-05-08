@@ -59,3 +59,5 @@ module.exports = function(app) {
 		// Send appropriate response
 		res.json(friends[bestFriendIndex]);
 		};
+	});
+};
