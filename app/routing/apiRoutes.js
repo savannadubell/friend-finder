@@ -38,7 +38,7 @@ module.exports = function(app) {
 				for(var j = 0; j < friends[i].scores.length; j++) {
 				  var difference = Math.abs(user.scores[j] - friends[i].scores[j]);
 				  totalDifference += difference;
-				}
+				};
 			// console.log('diff = ' + diff);
 
 			// If lowest difference, record the friend match
@@ -50,14 +50,12 @@ module.exports = function(app) {
 			if(totalDifference < minimumDifference) {
 					bestFriendIndex = i;
 					minimumDifference = totalDifference;
-			}
-		}
+			};
+		};
 		
 		// Add new user
 		friends.push(userInput);
 
 		// Send appropriate response
 		res.json(friends[bestFriendIndex]);
-	
-	});
-  };
+		};
