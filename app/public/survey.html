@@ -263,6 +263,7 @@
 	  		valid = false;
   			}
   			if(valid === true) {
+					console.log ("valid");
 	 		 var newUser = {
 		  		name: $("#userName").val().trim(),
 		  		photo: $("#userPhoto").val().trim(),
@@ -281,14 +282,16 @@
 	  	};
 	  	var currentURL = window.location.origin;
 			// console.log('userInput = ' + JSON.stringify(userInput));
+			console.log(currentURL);
 			// Add user inputs to friends list
 			$.post(currentURL + "/api/friends", newUser, function(data) {
-      			// console.log('response = ' + JSON.stringify(data));
+						// console.log('response = ' + JSON.stringify(data));
+						console.log(data);
       			// Set the name and image values of friend match
-      			$('#userMatch').html(data.matchName);
-		    	$("#userMatchImage").attr("src", data.matchImage);
+						$('#userMatch').html(data.name);
+						$("#userMatchImage").attr("src", data.photo);
 		    	// Pop open the modal dialog
-      			$('#modal1').modal('toggle');
+      			$('#modal1').modal('open');
 			  });
 			} else {
 	  		// If a required field is missing, show alert

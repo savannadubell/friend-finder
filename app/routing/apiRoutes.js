@@ -19,8 +19,8 @@ module.exports = function(app) {
 		var userInput = req.body;
 		// console.log('userInput = ' + JSON.stringify(userInput));
 
-		for(var i = 0; i < user.scores.length; i++) {
-			user.scores[i] = parseInt(user.scores[i]);
+		for(var i = 0; i < userInput.scores.length; i++) {
+			userInput.scores[i] = parseInt(userInput.scores[i]);
 		  }
 		// console.log('userResponses = ' + userResponses);
 
@@ -36,7 +36,7 @@ module.exports = function(app) {
 			for(var i = 0; i < friends.length; i++) {
 				var totalDifference = 0;
 				for(var j = 0; j < friends[i].scores.length; j++) {
-				  var difference = Math.abs(user.scores[j] - friends[i].scores[j]);
+				  var difference = Math.abs(userInput.scores[j] - friends[i].scores[j]);
 				  totalDifference += difference;
 				};
 			// console.log('diff = ' + diff);
